@@ -5,3 +5,7 @@
   padding: 2rem;
   text-align: center;
 }
+
+.custom-shadow {
+  box-shadow: inset 0px -4px 5px rgba(0, 0, 0, 0.1);
+}
