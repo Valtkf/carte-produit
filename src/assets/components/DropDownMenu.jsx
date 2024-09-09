@@ -1,81 +1,74 @@
-import React from "react";
+import { useState } from "react";
+import DropDownMenuIcon from "./icons/DropDownMenuIcon";
+import EditIcon from "./icons/EditIcon";
+import ShareIcon from "./icons/ShareIcon";
+import TrashIcon from "./icons/TrashIcon";
 
-const staggerMenuItems = stagger(0.1, { startDelay: 0.15 });
-
-function useMenuAnimation(isOpen: boolean) {
-  const [scope, animate] = useAnimate();
-
-  useEffect(() => {
-    animate(".arrow", { rotate: isOpen ? 180 : 0 }, { duration: 0.2 });
-
-    animate(
-      "ul",
-      {
-        clipPath: isOpen
-          ? "inset(0% 0% 0% 0% round 10px)"
-          : "inset(10% 50% 90% 50% round 10px)",
-      },
-      {
-        type: "spring",
-        bounce: 0,
-        duration: 0.5,
-      }
-    );
-
-    animate(
-      "li",
-      isOpen
-        ? { opacity: 1, scale: 1, filter: "blur(0px)" }
-        : { opacity: 0, scale: 0.3, filter: "blur(20px)" },
-      {
-        duration: 0.2,
-        delay: isOpen ? staggerMenuItems : 0,
-      }
-    );
-  }, [isOpen]);
-
-  return scope;
-}
-
-export default function App() {
+export default function DropDownMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const scope = useMenuAnimation(isOpen);
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <nav className="menu" ref={scope}>
+    <div>
+      <button
+        onClick={toggleDropdown}
+        id="dropdownDefaultButton"
+        className={`flex justify-center items-center border-[1px] rounded-xl w-[44px] h-[44px] font-medium text-lg custom-shadow ${
+          isOpen ? "border-black" : "border-[#E4E4EB]" // Applique la bordure noire si le menu est ouvert, sinon gris clair
+        }`}
+      >
+        <DropDownMenuIcon />
+      </button>
+
       <div
-        style={{
-          position: "fixed",
-          bottom: -210,
-          left: 200,
-          width: 50,
-          height: 50,
-          background: "white",
-        }}
-      />
-      <motion.button
-        whileTap={{ scale: 0.97 }}
-        onClick={() => setIsOpen(!isOpen)}
+        id="dropdown"
+        className={`z-10 absolute left-[330px] top-10 mt-2 divide-y divide-gray-100 rounded-lg border-[1px] border-[#E4E4EB] w-[200px] bg-white transform transition-transform duration-300 ease-out ${
+          isOpen
+            ? "scale-100 opacity-100"
+            : "scale-50 opacity-0 pointer-events-none"
+        }`} // Ajout d'une transition et transformation
       >
-        Menu
-        <div className="arrow" style={{ transformOrigin: "50% 55%" }}>
-          <svg width="15" height="15" viewBox="0 0 20 20">
-            <path d="M0 7 L 20 7 L 10 16" />
-          </svg>
-        </div>
-      </motion.button>
-      <ul
-        style={{
-          pointerEvents: isOpen ? "auto" : "none",
-          clipPath: "inset(10% 50% 90% 50% round 10px)",
-        }}
-      >
-        <li>Item 1 </li>
-        <li>Item 2 </li>
-        <li>Item 3 </li>
-        <li>Item 4 </li>
-        <li>Item 5 </li>
-      </ul>{" "}
-    </nav>
+        <ul
+          className=" flex items-start flex-col py-2 text-sm text-black p-2"
+          aria-labelledby="dropdownDefaultButton"
+        >
+          <li>
+            <a
+              href="#"
+              className="flex justify-center items-center px-4 py-2 hover:bg-gray-100 hover:rounded-lg"
+            >
+              <div className="mr-2">
+                <EditIcon />
+              </div>
+              Edit Challenge
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className=" flex justify-center items-center px-4 py-2 hover:bg-gray-100 hover:rounded-lg"
+            >
+              <div className="mr-[10px]">
+                <ShareIcon />
+              </div>
+              Share Challenge
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="flex justify-center items-center px-4 py-2 hover:bg-gray-100 hover:rounded-lg text-[#D73F3EE5]"
+            >
+              <div className="mr-2">
+                <TrashIcon />
+              </div>
+              Delete Challenge
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
