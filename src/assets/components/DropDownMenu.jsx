@@ -28,7 +28,7 @@ export default function DropDownMenu() {
           isOpen
             ? "scale-100 opacity-100"
             : "scale-50 opacity-0 pointer-events-none"
-        }`} // Ajout d'une transition et transformation
+        }`}
       >
         <ul
           className=" flex items-start flex-col py-2 text-sm text-black p-2"
