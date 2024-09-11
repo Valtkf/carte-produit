@@ -13,7 +13,7 @@ export default function Card() {
         alt=""
         className="fixed top-0 left-0 right-0 bottom-0 min-h-screen w-full object-cover z-0"
       />
-      <div className="z-10 flex flex-col items-center border-[1px] border-[#E4E4EB] bg-white rounded-3xl w-[411px] h-[475px] text-2xl text-slate-800 font-sans p-4">
+      <div className="relative flex flex-col items-center border-[1px] border-[#E4E4EB] bg-white rounded-3xl w-[411px] h-[475px] text-2xl text-slate-800 font-sans p-4">
         <div className="  rounded-2xl w-[375px] h-[263px]">
           <img
             src={BgRed1}
@@ -37,7 +37,7 @@ export default function Card() {
           <DropDownMenu />
         </div>
       </div>
-      <div className="z-10 flex flex-col items-center border-[1px] border-[#E4E4EB] bg-white rounded-3xl w-[411px] h-[475px] text-2xl text-slate-800 font-sans p-4">
+      <div className="relative flex flex-col items-center border-[1px] border-[#E4E4EB] bg-white rounded-3xl w-[411px] h-[475px] text-2xl text-slate-800 font-sans p-4">
         <div className="  rounded-2xl w-[375px] h-[263px]">
           <img
             src={BgBlack}
@@ -61,8 +61,8 @@ export default function Card() {
           <DropDownMenu />
         </div>
       </div>
-      <div className="z-10 flex flex-col items-center border-[1px] border-[#E4E4EB] bg-white rounded-3xl w-[411px] h-[475px] text-2xl text-slate-800 font-sans p-4">
-        <div className="  rounded-2xl w-[375px] h-[263px]">
+      <div className="relative flex flex-col items-center border-[1px] border-[#E4E4EB] bg-white rounded-3xl w-[411px] h-[475px] text-2xl text-slate-800 font-sans p-4">
+        <div className="rounded-2xl w-[375px] h-[263px]">
           <img
             src={BgRed2}
             alt=""
