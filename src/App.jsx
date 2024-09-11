@@ -1,9 +1,10 @@
 import "./App.css";
+import Card from "./assets/components/Card.jsx";
 
 function App() {
   return (
     <>
-      <div className="text-2xl text-slate-800 font-sans">Hello</div>
+      <Card />
     </>
   );
 }
