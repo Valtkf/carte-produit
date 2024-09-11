@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import DropDownMenuIcon from "./icons/DropDownMenuIcon";
 import EditIcon from "./icons/EditIcon";
 import ShareIcon from "./icons/ShareIcon";
@@ -6,12 +6,28 @@ import TrashIcon from "./icons/TrashIcon";
 
 export default function DropDownMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
+
   return (
-    <div>
+    <div ref={menuRef}>
       <button
         onClick={toggleDropdown}
         id="dropdownDefaultButton"
@@ -31,7 +47,7 @@ export default function DropDownMenu() {
         }`}
       >
         <ul
-          className=" flex items-start flex-col py-2 text-sm text-black p-2"
+          className="flex items-start flex-col py-2 text-sm text-black p-2"
           aria-labelledby="dropdownDefaultButton"
         >
           <li>
