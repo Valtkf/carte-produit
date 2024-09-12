@@ -40,7 +40,7 @@ export default function DropDownMenu() {
 
       <div
         id="dropdown"
-        className={`z-10 absolute left-[330px] top-10 mt-2 divide-y divide-gray-100 rounded-lg border-[1px] border-[#E4E4EB] w-[200px] bg-white transform transition-transform duration-300 ease-out ${
+        className={`z-10 absolute left-[180px] top-10 mt-2 divide-y divide-gray-100 rounded-lg border-[1px] border-[#E4E4EB] w-[200px] bg-white transform transition-transform duration-300 ease-out ${
           isOpen
             ? "scale-100 opacity-100"
             : "scale-50 opacity-0 pointer-events-none"
